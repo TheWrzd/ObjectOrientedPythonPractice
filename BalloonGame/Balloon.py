@@ -23,7 +23,7 @@ class Balloon(ABC):
         self.speedY = speedY
         if not Balloon.popSoundLoaded: #load First time only
             Balloon.popSoundLoaded = True
-            Balloon.popSound = pygame.mixer.Sound('BalloonGame/sounds/balloonPop.wav')
+            Balloon.popSound = pygame.mixer.Sound('sounds/balloonPop.wav')
         
         balloonRect = self.balloonImage.getRect()
         self.width = balloonRect.width
@@ -58,21 +58,21 @@ class Balloon(ABC):
         self.balloonImage.draw()
 
 class BalloonSmall(Balloon):
-    balloonImage = pygame.image.load('BalloonGame/images/redBalloonSmall.png')
+    balloonImage = pygame.image.load('images/redBalloonSmall.png')
     def __init__(self,window,maxWidth,maxHeight, ID):
         oImage = pygwidgets.Image(window,(0,0), BalloonSmall.balloonImage)
         super().__init__(window,maxWidth, maxHeight, ID,
                              oImage, 'Small',30, SPEED_S)
     
 class BalloonMedium(Balloon):
-    balloonImage = pygame.image.load('BalloonGame/images/redBalloonMedium.png')
+    balloonImage = pygame.image.load('images/redBalloonMedium.png')
     def __init__(self,window, maxWidth, maxHeight, ID):
         oImage = pygwidgets.Image(window, (0,0), BalloonMedium.balloonImage)
         super().__init__(window, maxWidth, maxHeight, ID,
                          oImage, 'Medium', 20, SPEED_M)
         
 class BalloonLarge(Balloon):
-    balloonImage = pygame.image.load('BalloonGame/images/redBalloonLarge.png')
+    balloonImage = pygame.image.load('images/redBalloonLarge.png')
     def __init__(self,window, maxWidth, maxHeight, ID):
         oImage = pygwidgets.Image(window, (0,0), BalloonLarge.balloonImage)
         super().__init__(window, maxWidth, maxHeight, ID,
