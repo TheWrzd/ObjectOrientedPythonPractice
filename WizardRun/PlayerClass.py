@@ -73,7 +73,7 @@ class Player():
                 self.SetStates(LastState)
         
     def SetStates(self, dir):
-        print("DIRECTION:", dir)
+        #print("DIRECTION:", dir)
         if dir == 'right':
             self.right = True
             self.left = False
@@ -115,28 +115,28 @@ class Player():
         for obstacle in obstacle_List:
             
             if state == 'up' and NewPlayerRect.colliderect(borderTop) == True:
-                print('COLLISION',self.x, ' ', self.y)
+                #print('COLLISION',self.x, ' ', self.y)
                 output = True
             elif state == 'down' and NewPlayerRect.colliderect(borderBottom) == True:
-                print('COLLISION',self.x, ' ', self.y)
+                #print('COLLISION',self.x, ' ', self.y)
                 output = True
             elif state == 'left' and NewPlayerRect.colliderect(borderLeft) == True:
-                print('COLLISION',self.x, ' ', self.y)
+                #print('COLLISION',self.x, ' ', self.y)
                 output = True
             elif state == 'right' and NewPlayerRect.colliderect(borderRight) == True:
-                print('COLLISION',self.x, ' ', self.y)
+                #print('COLLISION',self.x, ' ', self.y)
                 output = True
             elif state == 'down' and NewPlayerRect.colliderect(obstacle):
-                print('COLLISION',self.x, ' ', self.y, 'OBSTACLE: ', obstacle)
+                #print('COLLISION',self.x, ' ', self.y, 'OBSTACLE: ', obstacle)
                 output = True
             elif state == 'up' and NewPlayerRect.colliderect(obstacle):
-                print('COLLISION',self.x, ' ', self.y, 'OBSTACLE: ', obstacle)
+                #print('COLLISION',self.x, ' ', self.y, 'OBSTACLE: ', obstacle)
                 output = True
             elif state == 'right' and NewPlayerRect.colliderect(obstacle):
-                print('COLLISION',self.x, ' ', self.y, 'OBSTACLE: ', obstacle)
+               # print('COLLISION',self.x, ' ', self.y, 'OBSTACLE: ', obstacle)
                 output = True
             elif state == 'left' and NewPlayerRect.colliderect(obstacle):
-                print('COLLISION',self.x, ' ', self.y, 'OBSTACLE: ', obstacle)
+                #print('COLLISION',self.x, ' ', self.y, 'OBSTACLE: ', obstacle)
                 output = True
         
         return output

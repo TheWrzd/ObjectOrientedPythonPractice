@@ -7,6 +7,7 @@ import sys
 from Map import *
 from PlayerClass import *
 from WizrardRunConstants import *
+from Board import *
 
 #Define Constants
 BLACK = (0,0,0)
@@ -31,8 +32,12 @@ transparent_surface = pygame.Surface((WINDOW_WIDTH, WINDOW_HEIGTH), pygame.SRCAL
 #5 - Initialize Variables 
 window.blit(BackGround,(0,0))
 Player1 = Player(window, WINDOW_WIDTH, WINDOW_HEIGTH)
+blinkly = CPU(window, WINDOW_WIDTH, WINDOW_HEIGTH)
+TIMER_EVENT_ID = pygame.USEREVENT + 1
+pygame.time.set_timer(TIMER_EVENT_ID, 3000)
 startGame = True
 LastState = None
+LastCPU_State = 'up'
 # 6 Loop forever 
 while startGame:
 
@@ -41,12 +46,17 @@ while startGame:
         key = pygame.key.get_pressed()  
         if Player1.GetState() != LastState:
             LastState = Player1.GetState()
-        
+        elif blinkly.GetState() != LastCPU_State:
+            LastCPU_State = blinkly.GetState()
+           # blinkly.BoardCollision(LastCPU_State)
         elif event.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
         elif event.type == pygame.KEYUP:
             continue
+
+        if blinkly.DistanceTrigger() == True:
+            blinkly.GenMove(LastCPU_State)
     if key[pygame.K_LEFT]:
         Player1.SetStates('left')
         Player1.BoardCollision(LastState)
@@ -66,10 +76,10 @@ while startGame:
         elif showObstacles == False:
             showObstacles = True
     
-    
-    
+     
     #8 Do any "Per Frame" actions 
-    
+        
+        
     #for obstacle in obstacle_List:
     
     #9 - Clear the window   
@@ -79,17 +89,15 @@ while startGame:
         window.blit(transparent_surface, (0,0))
 
     Player1.update()
+    blinkly.update(LastCPU_State)
 
     #10 Draw all the window elements
     Player1.draw()
+    blinkly.draw()
    
     for obstacle in obstacle_List:
         pygame.draw.rect(transparent_surface, translucent_color, obstacle)
     
-
-
-
-
     #11 Update the display window
     pygame.display.update()
     
